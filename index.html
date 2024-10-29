@@ -23,6 +23,11 @@
             <p><strong>Anniversary:</strong> <span id="anniversary"></span></p>
             <p><strong>Gender:</strong> <span id="gender"></span></p>
         </div>
+        
+        <!-- Download Button -->
+        <div class="download-button">
+            <button id="download_vcard">Download Contact (.vcf)</button>
+        </div>
 
         <!-- Detailed Information -->
         <div class="details">
@@ -68,8 +73,6 @@
                 <p><strong>Calendar URL:</strong> <a id="calendar_url" href="#" target="_blank"></a></p>
                 <p><strong>Emergency Contact:</strong> <span id="emergency_contact"></span></p>
                 <p><strong>Other Contact:</strong> <span id="other_contact"></span></p>
-                <p><strong>QR Code:</strong></p>
-                <div id="qr_code_container"></div>
             </div>
 
             <!-- Explanatory Fields -->
@@ -79,6 +82,9 @@
             </div>
             
         </div>
+
+        <!-- QR Code -->
+        <div id="qr_code_container"></div>
     </div>
 
     <script src="script.js"></script>

@@ -195,4 +195,108 @@ window.onload = function() {
             }
         }
     }
+
+
+    // Generate vCard Data
+    function generateVCard() {
+        let vCard = '';
+
+        // Begin vCard
+        vCard += 'BEGIN:VCARD\n';
+        vCard += 'VERSION:3.0\n';
+
+        // Full Name
+        if (params.has('fn') && params.get('fn').trim() !== '') {
+            vCard += `FN:${params.get('fn')}\n`;
+        }
+
+        // Name components (if needed)
+        // vCard += 'N:Doe;John;;;\n'; // Format: N:LastName;FirstName;AdditionalNames;HonorificPrefixes;HonorificSuffixes
+
+        // Title
+        if (params.has('title') && params.get('title').trim() !== '') {
+            vCard += `TITLE:${params.get('title')}\n`;
+        }
+
+        // Organization
+        if (params.has('org') && params.get('org').trim() !== '') {
+            vCard += `ORG:${params.get('org')}\n`;
+        }
+
+        // Phone
+        if (params.has('tel') && params.get('tel').trim() !== '') {
+            vCard += `TEL;TYPE=CELL:${params.get('tel')}\n`;
+        }
+
+        // Email
+        if (params.has('email') && params.get('email').trim() !== '') {
+            vCard += `EMAIL;TYPE=INTERNET:${params.get('email')}\n`;
+        }
+
+        // Address
+        if (params.has('adr') && params.get('adr').trim() !== '') {
+            vCard += `ADR;TYPE=HOME:;;${params.get('adr')};;;;\n`;
+        }
+
+        // URL
+        if (params.has('url') && params.get('url').trim() !== '') {
+            vCard += `URL:${params.get('url')}\n`;
+        }
+
+        // Birthday
+        if (params.has('bday') && params.get('bday').trim() !== '') {
+            vCard += `BDAY:${params.get('bday')}\n`;
+        }
+
+        // Anniversary
+        if (params.has('anniversary') && params.get('anniversary').trim() !== '') {
+            vCard += `ANNIVERSARY:${params.get('anniversary')}\n`;
+        }
+
+        // Note
+        if (params.has('note') && params.get('note').trim() !== '') {
+            vCard += `NOTE:${params.get('note')}\n`;
+        }
+
+        // Social Media URLs
+        const socialMediaFields = ['github', 'twitter', 'linkedin', 'instagram', 'facebook'];
+        socialMediaFields.forEach(field => {
+            if (params.has(field) && params.get(field).trim() !== '') {
+                vCard += `URL:${params.get(field)}\n`;
+            }
+        });
+
+        // Other custom fields can be added similarly
+        // End vCard
+        vCard += 'END:VCARD\n';
+
+        return vCard;
+    }
+
+    // Download vCard
+    function downloadVCard() {
+        const vCardData = generateVCard();
+        const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+
+        // Set the filename using the full name or a default value
+        const fileName = params.get('fn') ? params.get('fn').replace(/\s+/g, '_') : 'contact';
+        link.download = `${fileName}.vcf`;
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Release the object URL after the download
+        URL.revokeObjectURL(url);
+    }
+
+    // Add event listener to the download button
+    const downloadButton = document.getElementById('download_vcard');
+    if (downloadButton) {
+        downloadButton.addEventListener('click', downloadVCard);
+    }
 };
