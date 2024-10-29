@@ -100,7 +100,7 @@ Populate the contact card by appending URL parameters to the `index.html` file. 
 
 **URL:**
 
-    http://localhost:8000/index.html?fn=Alex%20Johnson&title=Data%20Scientist&org=Tech%20Innovators&email=alex.johnson%40example.com&tel=5551234567&github=https%3A%2F%2Fgithub.com%2Falexjohnson&twitter=https%3A%2F%2Ftwitter.com%2Falexj&linkedin=https%3A%2F%2Flinkedin.com%2Fin%2Falexjohnson&meeting_date=2023-10-15&pronouns=They%2FThem&hobby=Cycling%2C%20Photography&skills=Python%2C%20Machine%20Learning&photo=https%3A%2F%2Fvia.placeholder.com%2F150
+    http://127.0.0.1:5500/index.html?fn=Jon%20Bonney&title=Software%20Developer&org=StreamLaunch&email=jon%40byteblazesoftware.com&github=https%3A%2F%2Fgithub.com%2Fjonbonney&linkedin=https%3A%2F%2Flinkedin.com%2Fin%2Fjonathan-bonney&hobby=Rock%20Climbing%2C%20Photography&skills=Go%2C%20C%2B%2B%2C%20PHP%2C%20JS%2C%20HTML%2C%20CSS%2C%20Python&photo=https%3A%2F%2Fgithub.com%2Fjonbonney.png
 
 **Explanation:**
 
