@@ -205,13 +205,56 @@ window.onload = function() {
         vCard += 'BEGIN:VCARD\n';
         vCard += 'VERSION:3.0\n';
 
-        // Full Name
+        // Full Name (FN)
+        let fullName = '';
         if (params.has('fn') && params.get('fn').trim() !== '') {
-            vCard += `FN:${params.get('fn')}\n`;
+            fullName = params.get('fn').trim();
+            vCard += `FN:${fullName}\n`;
+        }
+        
+        // Name Components (N)
+        let familyName = '';
+        let givenName = '';
+        let additionalName = '';
+        let honorificPrefix = '';
+        let honorificSuffix = '';
+
+        // Check if name components are provided
+        if (params.has('family_name') || params.has('given_name') || params.has('additional_name') ||
+            params.has('honorific_prefix') || params.has('honorific_suffix')) {
+
+            if (params.has('family_name')) {
+                familyName = params.get('family_name').trim();
+            }
+            if (params.has('given_name')) {
+                givenName = params.get('given_name').trim();
+            }
+            if (params.has('additional_name')) {
+                additionalName = params.get('additional_name').trim();
+            }
+            if (params.has('honorific_prefix')) {
+                honorificPrefix = params.get('honorific_prefix').trim();
+            }
+            if (params.has('honorific_suffix')) {
+                honorificSuffix = params.get('honorific_suffix').trim();
+            }
+        } else if (fullName !== '') {
+            // Parse full name into components
+            const nameParts = fullName.split(' ');
+            if (nameParts.length === 1) {
+                givenName = nameParts[0];
+            } else if (nameParts.length === 2) {
+                givenName = nameParts[0];
+                familyName = nameParts[1];
+            } else {
+                givenName = nameParts[0];
+                familyName = nameParts[nameParts.length - 1];
+                additionalName = nameParts.slice(1, -1).join(' ');
+            }
         }
 
-        // Name components (if needed)
-        // vCard += 'N:Doe;John;;;\n'; // Format: N:LastName;FirstName;AdditionalNames;HonorificPrefixes;HonorificSuffixes
+        // Add the N field to the vCard
+        vCard += `N:${familyName};${givenName};${additionalName};${honorificPrefix};${honorificSuffix}\n`;
 
         // Title
         if (params.has('title') && params.get('title').trim() !== '') {
