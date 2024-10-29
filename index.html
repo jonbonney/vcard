@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Virtual Contact Card</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <div class="vcard">
@@ -66,8 +67,9 @@
                 <p><strong>Portfolio:</strong> <a id="portfolio" href="#" target="_blank"></a></p>
                 <p><strong>Calendar URL:</strong> <a id="calendar_url" href="#" target="_blank"></a></p>
                 <p><strong>Emergency Contact:</strong> <span id="emergency_contact"></span></p>
-                <p><strong>QR Code:</strong> <img id="qr_code" src="" alt="QR Code"></p>
                 <p><strong>Other Contact:</strong> <span id="other_contact"></span></p>
+                <p><strong>QR Code:</strong></p>
+                <div id="qr_code_container"></div>
             </div>
 
             <!-- Explanatory Fields -->

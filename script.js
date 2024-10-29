@@ -104,13 +104,36 @@ window.onload = function() {
                 sectionVisibility[fieldToSection[paramName]] = true;
             }
         } else {
-            if (element) {
-                if (element.parentElement.tagName.toLowerCase() === 'div' || element.parentElement.tagName.toLowerCase() === 'p') {
-                    element.parentElement.style.display = 'none';
-                } else {
-                    element.style.display = 'none';
+            if (paramName === 'qr_code') {
+                // Generate QR code for the current URL
+                generateQRCode(window.location.href);
+                // Mark the section as visible
+                if (fieldToSection[paramName]) {
+                    sectionVisibility[fieldToSection[paramName]] = true;
+                }
+            } else {
+                if (element) {
+                    if (element.parentElement.tagName.toLowerCase() === 'div' || element.parentElement.tagName.toLowerCase() === 'p') {
+                        element.parentElement.style.display = 'none';
+                    } else {
+                        element.style.display = 'none';
+                    }
                 }
             }
+        }
+    }
+
+    function generateQRCode(url) {
+        const qrCodeContainer = document.getElementById('qr_code_container');
+        if (qrCodeContainer) {
+            // Clear any existing content
+            qrCodeContainer.innerHTML = '';
+            // Generate the QR code
+            new QRCode(qrCodeContainer, {
+                text: url,
+                width: 256,
+                height: 256
+            });
         }
     }
 

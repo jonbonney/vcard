@@ -191,3 +191,9 @@ button:hover {
     max-width: 100%;
     overflow-wrap: anywhere;
 }
+
+#qr_code_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
