@@ -217,6 +217,34 @@ a:hover {
     text-align: center;
 }
 
+.create-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+#vcard-form {
+    display: grid;
+    width: 100%;
+    margin: 20px auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    grid-template-rows: auto;
+}
+
+.vcard-form-section {
+    grid-column: auto;
+    margin: 10px;
+}
+
+.vcard-form-section input {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
 .create-form h1 {
     font-size: 2em;
     color: var(--heading-color);
@@ -281,11 +309,4 @@ a:hover {
     #generated-url-bottom {
         width: 100%;
     }
-}
-
-#vcard-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
 }
